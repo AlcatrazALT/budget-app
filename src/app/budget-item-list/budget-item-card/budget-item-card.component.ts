@@ -8,10 +8,11 @@ import { BudgetItemModel } from 'src/shared/models/budget-item-model';
 })
 export class BudgetItemCardComponent implements OnInit {
 
-  @Input() item: BudgetItemModel = new BudgetItemModel('', 0)
+  @Input() item: BudgetItemModel
 
   //any - because we don't send any data, parent already knows that item should be deleted
   @Output() deleteButtonClick: EventEmitter<any> = new EventEmitter<any>()
+  @Output() cardClick: EventEmitter<any> = new EventEmitter<any>()
 
   constructor() { }
 
@@ -20,5 +21,9 @@ export class BudgetItemCardComponent implements OnInit {
 
   onDeleteButtonClick(){
     this.deleteButtonClick.emit()
+  }
+
+  onCardClick(){
+    this.cardClick.emit()
   }
 }

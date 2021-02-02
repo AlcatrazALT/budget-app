@@ -9,12 +9,20 @@ import { BudgetItemModel } from 'src/shared/models/budget-item-model';
 })
 export class AddItemFormComponent implements OnInit {
 
-  @Input() item: BudgetItemModel = new BudgetItemModel('', 0)
+  @Input() item: BudgetItemModel
   @Output() formSubmit: EventEmitter<BudgetItemModel> = new EventEmitter<BudgetItemModel>()
+
+  isNewItem:boolean
 
   constructor() { }
 
   ngOnInit(): void {
+    if (this.item) {
+      this.isNewItem = false
+    } else{
+      this.isNewItem = true
+      this.item = new BudgetItemModel('', 0)
+    }
   }
 
   onSubmit(form: NgForm){
