@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { BudgetItemModel } from 'src/shared/models/budget-item-model';
 
 @Component({
@@ -10,9 +10,15 @@ export class BudgetItemCardComponent implements OnInit {
 
   @Input() item: BudgetItemModel = new BudgetItemModel('', 0)
 
+  //any - because we don't send any data, parent already knows that item should be deleted
+  @Output() deleteButtonClick: EventEmitter<any> = new EventEmitter<any>()
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onDeleteButtonClick(){
+    this.deleteButtonClick.emit()
+  }
 }
